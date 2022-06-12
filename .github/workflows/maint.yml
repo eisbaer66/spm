@@ -1,0 +1,97 @@
+# The name used in the GitHub UI for the workflow
+name: 'maint'
+
+# When to run this action:
+# - Scheduled on sunday
+# - Manually runable from the GitHub UI with a reason
+on:
+  schedule:
+  #                day of the week
+  #              month
+  #            day
+  #          hour
+  #        minute
+  - cron: '5 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running the workflow'
+        required: true
+        default: 'Manual run'
+
+# Run on the latest version of Ubuntu
+jobs:
+  delete-old-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 14 #30
+          keep_minimum_runs: 6
+
+  check-docker:
+    runs-on: ubuntu-latest
+    outputs:
+      needs-updating: ${{ steps.baseupdatecheck.outputs.out-of-date }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Image Update Checker
+      id: baseupdatecheck
+      uses: twiddler/is-my-docker-parent-image-out-of-date@v1
+      with:
+        parent-image: mcr.microsoft.com/dotnet/sdk:6.0
+        my-image: icebear66/spm:latest
+    - run: echo ${{ format('out-of-date -> {0}', steps.baseupdatecheck.outputs.out-of-date) }}
+        
+    #Bump version and push tag
+    - uses: actions/checkout@v3
+      if: steps.baseupdatecheck.outputs.out-of-date == 'true'
+      with:
+        token: ${{ secrets.GH_PAT }}    #needed to trigger new workflow when pushing the new tag
+        fetch-depth: '0'                #needed to scan for current version tag
+    - name: Bump version and push tag
+      uses: eisbaer66/github-tag-action@retag
+      if: steps.baseupdatecheck.outputs.out-of-date == 'true'
+      id: tag
+      #if: input.create-tag == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        DEFAULT_BUMP: patch
+        WITH_V: true
+        INITIAL_VERSION: 0.1.0
+        RETAG: true
+    - run: echo ${{ format('new_tag -> {0}', steps.tag.outputs.new_tag) }}
+      if: steps.baseupdatecheck.outputs.out-of-date == 'true'
+    - run: echo ${{ format('tag -> {0}', steps.tag.outputs.tag) }}
+      if: steps.baseupdatecheck.outputs.out-of-date == 'true'
+
+  version-sweep:
+    runs-on: ubuntu-latest
+
+    # Checkout the repo into the workspace within the VM
+    steps:
+    - uses: actions/checkout@v3
+
+    # If triggered manually, print the reason why
+    - name: 'Print manual run reason'
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        echo "Reason: ${{ github.event.inputs.reason }}"
+
+    # Run the .NET version sweeper
+    # Issues will be automatically created for any non-ignored projects that are targeting non-LTS versions
+    - name: .NET version sweeper
+      id: dotnet-version-sweeper
+      uses: dotnet/versionsweeper@v1.6
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        owner: ${{ github.repository_owner }}
+        name: ${{ github.repository }}
+        branch: ${{ github.ref }}
+        sdkCompliance: true
+    - if: ${{ steps.dotnet-version-sweeper.outputs.summary-message != '' }}
+      run: echo "${{ steps.dotnet-version-sweeper.outputs.summary-message }}"

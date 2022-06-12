@@ -1,0 +1,20 @@
+
+
+draft release -> real only after all platforms built successfully
+code coverage in CI
+spm init?
+include-directory in local-config?
+sp/smx?
+
+createsummary
+itemeditor
+maui?
+cv
+arbeitszeugnis
+
+
+System.CommandLine.Hosting.dll
+commandline => float tests
+  ArgumentConverter.StringConverters
+
+elastic lifecycle management

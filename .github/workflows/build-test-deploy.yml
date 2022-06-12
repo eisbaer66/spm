@@ -1,0 +1,198 @@
+name: build-test-deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    tags: [ v*.*.* ]
+    branches: [ main, dev, v*.*.* ]
+    paths-ignore:
+    - 'README.md'
+    - '.github/workflows/maint.yml'
+  pull_request:
+    tags: [ v*.*.* ]
+    branches: [ main, dev, v*.*.* ]
+    paths-ignore:
+    - 'README.md'
+    - '.github/workflows/maint.yml'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running the workflow'
+        required: true
+        default: 'Manual run'
+  
+env:
+  DOTNET_VERSION: '6.0.x'
+  REQUIRED_DOTNET_RUNTIME_VERSION: '6.0'
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  #analize:
+  #  name: analize
+  #  needs: build-test
+  #  runs-on: windows-2019 
+
+  #  steps:
+  #  - uses: actions/checkout@v2
+
+  #  - name: Setup .NET
+  #    uses: actions/setup-dotnet@v2
+  #    with:
+  #      dotnet-version: '3.1.x'    #code-analysis apparantly needs 3.1
+  #  - name: Restore
+  #    run: dotnet restore
+  #  - name: Run .NET Code Analysis
+  #    uses: dotnet/code-analysis@main
+  #    id: code-analysis
+  #    with:
+  #      build-breaking: false
+  #      all-categories: recommended
+
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rid: ["linux-x64", "win-x64", "osx-x64"]
+    env:    
+      TAGS: |
+        type=schedule
+        type=ref,event=tag,prefix=${{ matrix.rid }}-
+        type=ref,event=branch,prefix=${{ matrix.rid }}-
+        type=ref,event=pr,prefix=${{ matrix.rid }}-
+        type=semver,pattern=${{ matrix.rid }}-v{{version}}
+        type=semver,pattern=${{ matrix.rid }}-v{{major}}.{{minor}}
+        type=semver,pattern=${{ matrix.rid }}-v{{major}}
+        type=sha,prefix=${{ matrix.rid }}-
+        type=raw,value=${{ matrix.rid }}
+        type=raw,value=latest,enable=${{ matrix.rid == 'linux-x64' && (github.ref == format('refs/heads/{0}', 'main') || startsWith(github.ref, 'refs/tags/v')) }}
+    outputs:
+      gh-release-id: ${{ steps.gh-release.outputs.id }}
+    #  success:  ${{ steps.set-output.outputs.linux-x64-success && steps.set-output.outputs.win-x64-success && steps.set-output.outputs.osx-x64-success }}
+    steps:
+    - uses: actions/checkout@v3
+
+    # If triggered manually, print the reason why
+    - name: 'Print manual run reason'
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        echo "Reason: ${{ github.event.inputs.reason }}"
+        
+    #build and test
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Build build-env
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        load: true
+        tags: icebear66/spm-dev:${{ matrix.rid }}
+        target: build-env
+        build-args: |
+          rid=${{ matrix.rid }}
+    - name: Build spm-gh-action
+      uses: docker/build-push-action@v3
+      if: matrix.rid == 'linux-x64'
+      with:
+        context: .
+        load: true
+        tags: icebear66/spm-gh-action:${{ matrix.rid }}
+        target: spm-gh-action
+        build-args: |
+          rid=${{ matrix.rid }}
+
+    #Test dotnet
+    - name: Test dotnet
+      run: docker run -t --rm --network host --entrypoint dotnet -e SPM_GitHub__Token=${{ secrets.GITHUB_TOKEN }} icebear66/spm-dev:${{ matrix.rid }} test
+      if: matrix.rid == 'linux-x64'
+    #Test action
+    - name: Test spm-gh-action image
+      run: docker run -t --rm --network host icebear66/spm-gh-action:${{ matrix.rid }} update
+      if: matrix.rid == 'linux-x64'
+    - name: Test spm-gh-action image
+      run: docker run -t --rm --network host  --workdir /github/workspace -v "/home/runner/work/spm-private/spm-private":"/github/workspace" icebear66/spm-gh-action:${{ matrix.rid }} update 4 ./SourcePawnManager.Core.Tests ${{ secrets.GITHUB_TOKEN }}
+      if: matrix.rid == 'linux-x64'
+    - name: Test spm image
+      run: docker run -t --rm --network host icebear66/spm:${{ matrix.rid }} update
+      if: matrix.rid == 'linux-x64'
+    - name: Test spm image
+      run: docker run -t --rm --network host --workdir /github/workspace/SourcePawnManager.Core.Tests -v "/home/runner/work/spm-private/spm-private":"/github/workspace" icebear66/spm:${{ matrix.rid }} -vvvv --github-token ${{ secrets.GITHUB_TOKEN }} update
+      if: matrix.rid == 'linux-x64'
+
+    #release
+    #copy spm from docker, zip and add to gh-release
+    - name: create docker container
+      run: docker create --name spm-dev icebear66/spm-dev:${{ matrix.rid }}
+      if: startsWith(github.ref, 'refs/tags/v')
+    - name: copy output from container 
+      run: docker cp spm-dev:/app/out out-from-docker
+      if: startsWith(github.ref, 'refs/tags/v')
+    - name: Zip ${{ matrix.rid }}
+      uses: ihiroky/archive-action@v1
+      if: startsWith(github.ref, 'refs/tags/v')
+      with:
+        root_dir: out-from-docker
+        file_path: ${{ matrix.rid }}.zip                
+    - run: cp install-spm-template.ps1 install-spm.ps1
+      if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
+    - run: sed -i -e 's/$requiredDotnetRuntimeVersion = \"6.0\"/$requiredDotnetRuntimeVersion = \"${{ env.REQUIRED_DOTNET_RUNTIME_VERSION }}\"/g' install-spm.ps1
+      if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
+    - run: sed -i -e 's/$spmVersion = \"v0.1\"/$spmVersion = \"${{ github.ref_name }}\"/g' install-spm.ps1
+      if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
+    - name: Release
+      id: gh-release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/v')
+      with:
+        draft: true
+        prerelease: true
+        generate_release_notes: true
+        files: |
+          ${{ matrix.rid }}.zip
+          install-spm.ps1
+        token: ${{ github.token }}
+        
+    #push linux-x64-image to docker hub
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v4
+      if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
+      with:
+        images: docker.io/icebear66/spm
+        tags: ${{ env.TAGS }}
+        flavor: latest=false
+    - name: Push spm to docker hub
+      uses: docker/build-push-action@v3
+      if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        target: spm
+        build-args: |
+          rid=${{ matrix.rid }}
+        cache-from: type=registry,ref=icebear66/spm:${{ matrix.rid }}-buildcache
+        cache-to: type=registry,ref=icebear66/spm:${{ matrix.rid }}-buildcache,mode=max
+        
+    #- name: set output
+    #  id: set-output
+    #  run: echo "::set-output name=${{ matrix.rif }}-success::true"
+
+      
+  finalize-release:
+    runs-on: ubuntu-latest
+    needs: build-test
+    if: startsWith(github.ref, 'refs/tags/v') # && needs.build-test.outputs.success
+    steps:
+    - run:
+        gh release edit ${{ needs.build-test.outputs.gh-release-id }} --draft=false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

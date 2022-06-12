@@ -1,0 +1,19 @@
+{
+  "dependencies": [
+    {
+      "type": "GitHubTagFile",
+      "versionRange": "1.7.1.1",
+      "owner": "nosoop",
+      "repository": "tf2attributes",
+      "assetName": "tf2attributes.inc"
+    },
+    {
+      "type": "GitHubTagZip",
+      "versionRange": "8.0",
+      "owner": "nosoop",
+      "repository": "SM-TFCustAttr",
+      "assetName": "package.zip",
+      "fileInZip": "scripting/include/tf_custom_attributes.inc"
+    }
+  ]
+}

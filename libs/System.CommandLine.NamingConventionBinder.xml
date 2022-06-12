@@ -1,0 +1,770 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.CommandLine.NamingConventionBinder</name>
+    </assembly>
+    <members>
+        <member name="T:System.CommandLine.NamingConventionBinder.BindingContextExtensions">
+            <summary>
+            Methods for working with binding contexts.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.BindingContextExtensions.AddModelBinder(System.CommandLine.Binding.BindingContext,System.CommandLine.NamingConventionBinder.ModelBinder)">
+            <summary>
+            Adds a model binder which can be used to bind a specific type.
+            </summary>
+            <param name="bindingContext">The binding context for the current binding operation.</param>
+            <param name="binder">The model binder to add.</param>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.BindingContextExtensions.GetOrCreateModelBinder(System.CommandLine.Binding.BindingContext,System.CommandLine.Binding.IValueDescriptor)">
+            <summary>
+            Gets a model binder for the specified value descriptor.
+            </summary>
+            <returns>A model binder for the specified value descriptor.</returns>
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.CommandHandler">
+            <summary>
+            Provides methods for creating and working with command handlers that use naming conventions to bind parameters and model properties.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create(System.Delegate)">
+            <summary>
+            Creates a command handler based on a delegate.
+            </summary>
+            <param name="delegate">The delegate to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Reflection.MethodInfo"/>.
+            </summary>
+            <param name="method">The method to be called when the command handler is invoked.</param>
+            <param name="target">A target instance to be used if the specified method is an instance method. This can be null if the method is static.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``1(System.Action{``0})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`1"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`1"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``2(System.Action{``0,``1})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`2"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`2"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``3(System.Action{``0,``1,``2})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`3"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`3"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``4(System.Action{``0,``1,``2,``3})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`4"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`4"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``5(System.Action{``0,``1,``2,``3,``4})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`5"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`5"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``6(System.Action{``0,``1,``2,``3,``4,``5})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`6"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`6"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``7(System.Action{``0,``1,``2,``3,``4,``5,``6})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`7"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`7"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``8(System.Action{``0,``1,``2,``3,``4,``5,``6,``7})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`8"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`8"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``9(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`9"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`9"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``10(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`10"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`10"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``11(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`11"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`11"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``12(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`12"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`12"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``13(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`13"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`13"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``14(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`14"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`14"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``15(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`15"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`15"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``16(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+            <summary>
+            Creates a command handler based on an <see cref="T:System.Action`16"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Action`16"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``1(System.Func{``0,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`2"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`2"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``2(System.Func{``0,``1,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`3"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`3"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``3(System.Func{``0,``1,``2,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`4"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`4"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``4(System.Func{``0,``1,``2,``3,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`5"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`5"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``5(System.Func{``0,``1,``2,``3,``4,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`6"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`6"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``6(System.Func{``0,``1,``2,``3,``4,``5,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`7"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`7"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``7(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`8"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`8"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`9"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`9"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`10"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`10"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`11"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`11"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`12"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`12"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`13"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`13"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`14"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`14"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`15"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`15"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`16"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`16"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Int32})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`17"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`17"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``1(System.Func{``0,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`2"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`2"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``2(System.Func{``0,``1,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`3"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`3"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``3(System.Func{``0,``1,``2,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`4"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`4"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``4(System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`5"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`5"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``5(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`6"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`6"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``6(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`7"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`7"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``7(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`8"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`8"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`9"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`9"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`10"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`10"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`11"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`11"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`12"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`12"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`13"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`13"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`14"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`14"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`15"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`15"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`16"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`16"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`17"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`17"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``1(System.Func{``0,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`2"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`2"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``2(System.Func{``0,``1,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`3"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`3"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``3(System.Func{``0,``1,``2,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`4"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`4"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``4(System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`5"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`5"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``5(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`6"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`6"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``6(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`7"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`7"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``7(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`8"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`8"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`9"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`9"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`10"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`10"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`11"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`11"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`12"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`12"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`13"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`13"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`14"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`14"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`15"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`15"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`16"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`16"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.CommandHandler.Create``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.Task{System.Int32}})">
+            <summary>
+            Creates a command handler based on a <see cref="T:System.Func`17"/>.
+            </summary>
+            <param name="action">The <see cref="T:System.Func`17"/> to be called when the command handler is invoked.</param>
+            <returns>An instance of <see cref="T:System.CommandLine.Invocation.ICommandHandler"/>.</returns>
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.ConstructorDescriptor">
+            <summary>
+            Provides information for binding command line input to a constructor.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ConstructorDescriptor.Parent">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ConstructorDescriptor.ParameterDescriptors">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ConstructorDescriptor.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.HandlerDescriptor">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.HandlerDescriptor.GetCommandHandler">
+            <summary>
+            Gets a command handler that can bind to the specifications of the descriptor.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.HandlerDescriptor.Parent">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.HandlerDescriptor.ParameterDescriptors">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.HandlerDescriptor.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.HandlerDescriptor.FromMethodInfo(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Creates a descriptor based on the specified method.
+            </summary>
+            <param name="methodInfo">The method for which to create a handler descriptor.</param>
+            <param name="target">An instance for the descriptor to target. In the case of <see langword="static"/> methods, <see langword="null"/> should be passed.</param>
+            <returns>A handler descriptor for the method and instance.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.HandlerDescriptor.FromDelegate(System.Delegate)">
+            <summary>
+            Creates a descriptor based on the specified method.
+            </summary>
+            <param name="delegate">The delegate for which to create a handler descriptor.</param>
+            <returns>A handler descriptor for the delegate.</returns>
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.IMethodDescriptor">
+            <summary>
+            Provides information for binding command line input to a method.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.IMethodDescriptor.Parent">
+            <summary>
+            The model descriptor that this constructor belongs to.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.IMethodDescriptor.ParameterDescriptors">
+            <summary>
+            Descriptors for the parameters of the constructor.
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.ModelBinder">
+            <summary>
+            Creates instances of a specified type by binding properties and constructor parameters from command line input.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBinder.#ctor(System.Type)">
+            <param name="modelType">The type that the model binder can bind.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ModelBinder.ValueDescriptor">
+            <summary>
+            A descriptor for the source value
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ModelBinder.ModelDescriptor">
+            <summary>
+            The descriptor for the model type that the model binder targets.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ModelBinder.EnforceExplicitBinding">
+            <summary>
+            When set to <see langword="true"/>, the model binder will only bind constructor parameters or properties that it has been explicitly configured to bind.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBinder.BindMemberFromValue(System.Reflection.PropertyInfo,System.CommandLine.Binding.IValueDescriptor)">
+            <summary>
+            Sets a property using a value descriptor.
+            </summary>
+            <param name="property">The property to bind.</param>
+            <param name="valueDescriptor">A descriptor of the value to be used to set the property.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBinder.CreateInstance(System.CommandLine.Binding.BindingContext)">
+            <summary>
+            Creates an instance of the target model type.
+            </summary>
+            <param name="bindingContext">The binding context from which values are resolved.</param>
+            <returns>An instance created from the values in the binding context.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBinder.UpdateInstance``1(``0,System.CommandLine.Binding.BindingContext)">
+            <summary>
+            Updates an instance of the target model type.
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.ModelBinder`1">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBinder`1.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBinder`1.BindMemberFromValue``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.CommandLine.Binding.IValueDescriptor)">
+            <summary>
+            Configures a custom binding behavior for the specified property.
+            </summary>
+            <param name="property">An expression specifying the property to bind.</param>
+            <param name="valueDescriptor">A value descriptor for the value from which the property will be bound.</param>
+            <typeparam name="TValue">The type of the value to be bound.</typeparam>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBinder`1.BindMemberFromValue``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Func{System.CommandLine.Binding.BindingContext,``0})">
+            <summary>
+            Configures a custom binding behavior for the specified property.
+            </summary>
+            <param name="property">An expression specifying the property to bind.</param>
+            <param name="getValue">A delegate that gets the value to bind to the target property.</param>
+            <typeparam name="TValue">The type of the target property.</typeparam>
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.ModelBindingCommandHandler">
+            <summary>
+            Instantiates values to be passed to a user-defined command handler method.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBindingCommandHandler.InvokeAsync(System.CommandLine.Invocation.InvocationContext)">
+            <summary>
+            Binds values for the underlying user-defined method and uses them to invoke that method.
+            </summary>
+            <param name="context">The current invocation context.</param>
+            <returns>A task whose value can be used to set the process exit code.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBindingCommandHandler.BindParameter(System.Reflection.ParameterInfo,System.CommandLine.Argument)">
+            <summary>
+            Binds a method or constructor parameter based on the specified <see cref="T:System.CommandLine.Argument"/>.
+            </summary>
+            <param name="param">The parameter to bind.</param>
+            <param name="argument">The argument whose parsed result will be the source of the bound value.</param>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBindingCommandHandler.BindParameter(System.Reflection.ParameterInfo,System.CommandLine.Option)">
+            <summary>
+            Binds a method or constructor parameter based on the specified <see cref="T:System.CommandLine.Option"/>.
+            </summary>
+            <param name="param">The parameter to bind.</param>
+            <param name="option">The option whose parsed result will be the source of the bound value.</param>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelBindingCommandHandler.Invoke(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.ModelDescriptor">
+            <summary>
+            Provides information for binding command line input to instances of a specific <see cref="P:System.CommandLine.NamingConventionBinder.ModelDescriptor.ModelType"/>.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelDescriptor.#ctor(System.Type)">
+            <param name="modelType">The type of the model.</param>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ModelDescriptor.ConstructorDescriptors">
+            <summary>
+            Descriptors for the constructors for <see cref="P:System.CommandLine.NamingConventionBinder.ModelDescriptor.ModelType"/>
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ModelDescriptor.PropertyDescriptors">
+            <summary>
+            Descriptors for the properties of <see cref="P:System.CommandLine.NamingConventionBinder.ModelDescriptor.ModelType"/>.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ModelDescriptor.ModelType">
+            <summary>
+            The type that the model binder can bind instances of.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelDescriptor.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelDescriptor.FromType``1">
+            <summary>
+            Creates a model binder for the specified type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type that the model binder can bind instances of.</typeparam>
+            <returns>A <see cref="T:System.CommandLine.NamingConventionBinder.ModelBinder"/> for type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ModelDescriptor.FromType(System.Type)">
+            <summary>
+            Creates a model binder for the specified type.
+            </summary>
+            <param name="type">The type that the model binder can bind instances of.</param>
+            <returns>A <see cref="T:System.CommandLine.NamingConventionBinder.ModelBinder"/> for the specified type.</returns>
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.ParameterDescriptor">
+            <summary>
+            Provides information for binding command line input to a method or constructor parameter.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ParameterDescriptor.ValueName">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ParameterDescriptor.Parent">
+            <summary>
+            The method descriptor that this constructor belongs to.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ParameterDescriptor.ValueType">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ParameterDescriptor.HasDefaultValue">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.ParameterDescriptor.AllowsNull">
+            <summary>
+            Gets a value indicating whether <see langword="null"/> is allowed to be passed for the target parameter.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ParameterDescriptor.GetDefaultValue">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.ParameterDescriptor.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.PropertyDescriptor">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.PropertyDescriptor.ValueName">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.PropertyDescriptor.Parent">
+            <summary>
+            The model descriptor that the target property belongs to.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.PropertyDescriptor.ValueType">
+            <inheritdoc />
+        </member>
+        <member name="P:System.CommandLine.NamingConventionBinder.PropertyDescriptor.HasDefaultValue">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.PropertyDescriptor.GetDefaultValue">
+            <inheritdoc />
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.PropertyDescriptor.SetValue(System.Object,System.Object)">
+            <summary>
+            Sets a value on the target property.
+            </summary>
+            <param name="instance">The instance on which to set a value.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.PropertyDescriptor.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:System.CommandLine.NamingConventionBinder.TypeExtensions">
+            <summary>
+            Provides extensions to <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.TypeExtensions.IsConstructedGenericTypeOf(System.Type,System.Type)">
+            <summary>
+            Determines whether <paramref name="type"/> is a constructed type of <paramref name="genericTypeDefinition"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="genericTypeDefinition">The generic type definition.</param>
+            <returns><see langword="true" /> if <paramref name="type"/> is a constructed type of <paramref name="genericTypeDefinition"/>; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:System.CommandLine.NamingConventionBinder.TypeExtensions.IsNullableValueType(System.Type)">
+            <summary>
+            Determines whether <paramref name="type"/> is a nullable value type.
+            </summary>
+            <param name="type">The self.</param>
+            <returns><see langword="true" /> if <paramref name="type"/> is a nullable value type; otherwise, <see langword="false" />.</returns>
+        </member>
+    </members>
+</doc>

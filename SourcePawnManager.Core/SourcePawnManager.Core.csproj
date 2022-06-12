@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Mediator\GetPreviousDownloadDirectoriesQuery\**" />
+    <EmbeddedResource Remove="Mediator\GetPreviousDownloadDirectoriesQuery\**" />
+    <None Remove="Mediator\GetPreviousDownloadDirectoriesQuery\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="JsonSerialization\Schemas\DependencyVersion.schema.json" />
+    <None Remove="JsonSerialization\Schemas\IncludeManagerDefinition.schema.json" />
+    <None Remove="JsonSerialization\Schemas\IncludeManagerLocalDefinition.schema.json" />
+    <None Remove="JsonSerialization\Schemas\LockDefinition.schema.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="JsonSerialization\Schemas\LockDefinition.schema.json" />
+    <EmbeddedResource Include="JsonSerialization\Schemas\IncludeManagerLocalDefinition.schema.json" />
+    <EmbeddedResource Include="JsonSerialization\Schemas\DependencyVersion.schema.json" />
+    <EmbeddedResource Include="JsonSerialization\Schemas\IncludeManagerDefinition.schema.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonSchema.Net.Generation" Version="2.2.1" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="NuGet.Versioning" Version="6.2.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Apis\Git\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Git.CredentialManager">
+      <HintPath>..\libs\Microsoft.Git.CredentialManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties jsonserialization_4schemas_4dependencyversion_1schema_1json__JsonSchema="https://json-schema.org/draft/2020-12/schema" jsonserialization_4schemas_4includemanagerdefinition_1schema_1json__JsonSchema="https://json-schema.org/draft/2020-12/schema" jsonserialization_4schemas_4includemanagerlocaldefinition_1schema_1json__JsonSchema="https://json-schema.org/draft/2020-12/schema" jsonserialization_4schemas_4lockdefinition_1schema_1json__JsonSchema="https://json-schema.org/draft/2020-12/schema" /></VisualStudio></ProjectExtensions>
+
+</Project>

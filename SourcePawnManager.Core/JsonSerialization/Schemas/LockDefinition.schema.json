@@ -1,0 +1,64 @@
+{
+  "definitions": {
+    "DependencyVersion": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "tag"
+      ]
+    },
+    "IncludeLockDefinition": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "version": {
+          "$ref": "#/definitions/DependencyVersion"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "includeLocks": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/IncludeLockDefinition"
+      }
+    }
+  },
+  "required": [
+    "includeLocks"
+  ]
+}

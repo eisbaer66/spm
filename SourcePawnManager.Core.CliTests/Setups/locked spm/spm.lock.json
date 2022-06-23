@@ -1,0 +1,25 @@
+{
+  "includeLocks": [
+    {
+      "id": "GitHubTagFile:nosoop/tf2attributes:tf2attributes.inc",
+      "version": {
+        "version": "1.7.1",
+        "tag": "1.7.1"
+      }
+    },
+    {
+      "id": "GitHubTagZip:nosoop/SM-TFCustAttr:package.zip:scripting/include/tf_custom_attributes.inc",
+      "version": {
+        "version": "7.0",
+        "tag": "workflow-build7"
+      }
+    },
+    {
+      "id": "StaticUrl:https://raw.githubusercontent.com/JoinedSenses/SourceMod-IncludeLibrary/master/include/morecolors.inc",
+      "version": {
+        "version": "1.0",
+        "tag": ""
+      }
+    }
+  ]
+}

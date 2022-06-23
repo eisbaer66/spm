@@ -1,0 +1,32 @@
+{
+  "profiles": {
+    "SourcePawnManager": {
+      "commandName": "Project",
+      //"commandLineArgs": "asd"
+      //"commandLineArgs": "show-license"
+      //"commandLineArgs": "--help"
+      //"commandLineArgs": "--working-directory \"C:\\Users\\Jan\\source\\repos\\SourcePawnManager\\SourcePawnManager.Core.CliTests\\bin\\Debug\\net6.0\\wd\\locked spm\\restore; update\" -vvvv update"
+      "commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" -vvvv list",
+      "commandLineArgs": "--working-directory \"C:\\Users\\Jan\\source\\repos\\higps\\robogithub\" -vvvv install ghtz peace-maker DHooks2 17.* dhooks-2.2.0-detours17-sm110.zip addons/sourcemod/scripting/include/dhooks.inc -r \"v2.2.0-detours(\\d+)()()\""
+      //"commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" -vvvv restore --github-action",
+      //"commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" --dry-run -vv restore --github-action"
+      //"commandLineArgs": "--working-directory \".\" -vvvv restore --github-action"
+      //"commandLineArgs": "update"
+      //"commandLineArgs": "install --help",
+      //"commandLineArgs": "install github-tag-file --help"
+      //"commandLineArgs": "install github-tag-zip --help",
+      //"commandLineArgs": "-vvvv restore",
+      //"commandLineArgs": "install github-tag-file --help",
+      //"commandLineArgs": "install github-tag-zip --help",
+      //"commandLineArgs": "-vvvv install github-tag-file nosoop tf2attributes 1.* tf2attributes.inc --download-path test\\asd.inc --version-reg-ex asd"
+      //"commandLineArgs": "-vvvv install github-tag-file --help"
+      //"commandLineArgs": "-vvvv install github-tag-file nosoop tf2attributes 1.* tf2attributes.inc"
+      //"commandLineArgs": "install github-tag-file nosoop tf2attributes 1.* tf2attributes.inc"
+      //"commandLineArgs": "-vvvv install github-tag-zip nosoop SM-TFCustAttr 8.* package.zip scripting/include/tf_custom_attributes.inc --download-path test\\asd.inc --version-reg-ex asd",
+      //"commandLineArgs": "-vvvv install github-tag-zip nosoop SM-TFCustAttr 8.* package.zip scripting/include/tf_custom_attributes.inc"
+      //"commandLineArgs": "-vvvv install static-url https://raw.githubusercontent.com/JoinedSenses/SourceMod-IncludeLibrary/master/include/morecolors.inc --download-path lib/morecolors_newsyntax.inc"
+      //"commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" -vvvv remove 1",
+      //"commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" -vvvv remove GitHubTagFile:nosoop/tf2attributes:tf2attributes.inc"
+    }
+  }
+}

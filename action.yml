@@ -1,0 +1,43 @@
+name: 'SourcePawnManager'
+description: 'restore includes defined in spm.json'
+branding:
+  icon: aperture
+  color: blue
+inputs:
+  action:
+    description:
+      'The action to execute. Examples, "restore" or "update".'
+    required: false
+    default: 'restore'
+  verbosity:
+    description:
+      'The verbosity level used when logging. Examples, "0" through "4".'
+    required: false
+    default: '0'
+  working-directory:
+    description:
+      'The directory containing the spm.json. Examples, "." or "./src".'
+    required: false
+    default: '.'
+  github-token:
+    description:
+      'GitHub token used to authenticate API calls.'
+    required: false
+outputs:
+  exit-code:
+    description:
+      'The exit code of the action.'
+  message:
+    description:
+      'A message detailing the executed actions.'
+  dependency-count:
+    description:
+      'The count of restored/updated dependencies.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+  - ${{ inputs.action }}
+  - ${{ inputs.verbosity }}
+  - ${{ inputs.working-directory }}
+  - ${{ inputs.github-token }}

@@ -1,0 +1,147 @@
+name: build-test
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  #push:
+  #  branches: [ main, dev, v* ]
+  #  paths-ignore:
+  #  - 'README.md'
+  #pull_request:
+  #  branches: [ main, dev, v* ]
+  #  paths-ignore:
+  #  - 'README.md'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running the workflow'
+        required: true
+        default: 'Manual run'
+
+  
+env:
+  DOTNET_VERSION: '6.0.x'
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-test:
+    name: build-test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # If triggered manually, print the reason why
+    - name: 'Print manual run reason'
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        echo "Reason: ${{ github.event.inputs.reason }}"
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    #- name: Test
+    #  run: dotnet test --no-restore --verbosity normal
+    - name: Test
+      uses: zyborg/dotnet-tests-report@v1
+      with:
+        report_name: spm_tests
+        report_title: spm Tests
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  #analize:
+  #  name: analize
+  #  needs: build-test
+  #  runs-on: windows-2019 
+
+  #  steps:
+  #  - uses: actions/checkout@v2
+
+  #  - name: Setup .NET
+  #    uses: actions/setup-dotnet@v2
+  #    with:
+  #      dotnet-version: ${{ env.DOTNET_VERSION }}
+  #  - name: Restore
+  #    run: dotnet restore
+  #  - name: Run .NET Code Analysis
+  #    uses: dotnet/code-analysis@main
+  #    id: code-analysis
+  #    with:
+  #      build-breaking: false
+  #      all-categories: recommended
+  actions:
+    needs: build-test
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - uses: eisbaer66/spm@main
+      - uses: eisbaer66/spm@main
+        with:
+          action: update
+      - id: spm
+        uses: eisbaer66/spm@main
+        with:
+          working-directory: ./SourcePawnManager.Core.Tests
+          verbosity: 4
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+                    
+      - if: steps.spm.outputs.dependency-count != 0
+        run: |
+          echo "${{ steps.spm.outputs.message }}"
+
+      - if: steps.spm.outputs.exit-code != 0
+        run: |
+          echo "restore failed with exit-code ${{ steps.spm.outputs.exit-code }}: ${{ steps.spm.outputs.message }}"
+
+  #setup-actions-test:
+  #  #needs: build-test
+  #  # The type of runner that the job will run on
+  #  runs-on: ubuntu-latest
+  #  container: mcr.microsoft.com/dotnet/runtime:6.0
+
+  #  # Steps represent a sequence of tasks that will be executed as part of the job
+  #  steps:
+  #    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+  #    - uses: actions/checkout@v3
+  #    #- run: |
+  #    #    apt-get update &&
+  #    #    apt-get -y install curl
+  #    #- name: Setup .NET
+  #    #  uses: actions/setup-dotnet@v2
+  #    #  with:
+  #    #    dotnet-version: ${{ env.DOTNET_VERSION }}
+  #    - run: |
+  #        # Update the list of packages
+  #        apt-get update
+  #        # Install pre-requisite packages.
+  #        apt-get install -y wget apt-transport-https software-properties-common
+  #        # Download the Microsoft repository GPG keys
+  #        wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+  #        # Register the Microsoft repository GPG keys
+  #        dpkg -i packages-microsoft-prod.deb
+  #        # Update the list of packages after we added packages.microsoft.com
+  #        apt-get update
+  #        # Install PowerShell
+  #        apt-get install -y powershell
+
+  #    - run: mkdir spm
+  #    - shell: pwsh
+  #      run: |
+  #        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; 
+  #        &([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing -Headers @{Authorization='token ${{ secrets.GITHUB_TOKEN }}'; Accept='application/vnd.github.v3+raw'} 'https://raw.githubusercontent.com/eisbaer66/spm/v0.2/install-spm-template.ps1')))
+  #      working-directory: spm
+  #      continue-on-error: true
+  #    - run: pwsh -NoProfile -ExecutionPolicy unrestricted -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; &([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing -Headers @{Authorization='token ${{ secrets.GITHUB_TOKEN }}'; Accept='application/vnd.github.v3+raw'} 'https://raw.githubusercontent.com/eisbaer66/spm/v0.2/install-spm-template.ps1')))"
+  #      working-directory: spm
+
+  #    - run: spm update
+  #    - run: spm -vvvv -github-token ${{ secrets.GITHUB_TOKEN }} update
+  #      working-directory: ./SourcePawnManager.Core.Tests
+        
+  #    - run: dotnet --version

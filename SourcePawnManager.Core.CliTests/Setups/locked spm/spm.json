@@ -1,0 +1,25 @@
+{
+  "dependencies": [
+    {
+      "type": "GitHubTagFile",
+      "versionRange": "1.*",
+      "owner": "nosoop",
+      "repository": "tf2attributes",
+      "assetName": "tf2attributes.inc"
+    },
+    {
+      "type": "GitHubTagZip",
+      "versionRange": "*",
+      "owner": "nosoop",
+      "repository": "SM-TFCustAttr",
+      "assetName": "package.zip",
+      "fileInZip": "scripting/include/tf_custom_attributes.inc"
+    },
+    {
+      "type": "StaticUrl",
+      "versionRange": "(, )",
+      "url": "https://raw.githubusercontent.com/JoinedSenses/SourceMod-IncludeLibrary/master/include/morecolors.inc",
+      "downloadPath": "lib/morecolors_newsyntax.inc"
+    }
+  ]
+}

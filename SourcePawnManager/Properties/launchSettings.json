@@ -4,10 +4,10 @@
       "commandName": "Project",
       //"commandLineArgs": "asd"
       //"commandLineArgs": "show-license"
-      //"commandLineArgs": "--help"
+      //"commandLineArgs": "i su --help"
       //"commandLineArgs": "--working-directory \"C:\\Users\\Jan\\source\\repos\\SourcePawnManager\\SourcePawnManager.Core.CliTests\\bin\\Debug\\net6.0\\wd\\locked spm\\restore; update\" -vvvv update"
       "commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" -vvvv list",
-      "commandLineArgs": "--working-directory \"C:\\Users\\Jan\\source\\repos\\higps\\robogithub\" -vvvv install ghtz peace-maker DHooks2 17.* dhooks-2.2.0-detours17-sm110.zip addons/sourcemod/scripting/include/dhooks.inc -r \"v2.2.0-detours(\\d+)()()\""
+      //"commandLineArgs": "--working-directory \"C:\\Users\\Jan\\source\\repos\\higps\\robogithub\" -vvvv install ghtz peace-maker DHooks2 17.* dhooks-2.2.0-detours17-sm110.zip addons/sourcemod/scripting/include/dhooks.inc -r \"v2.2.0-detours(\\d+)()()\""
       //"commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" -vvvv restore --github-action",
       //"commandLineArgs": "--working-directory \"../../../../SourcePawnManager.Core.Tests\" --dry-run -vv restore --github-action"
       //"commandLineArgs": "--working-directory \".\" -vvvv restore --github-action"

@@ -5,6 +5,24 @@
 
 This CLI tool is used to install, restore, update and remove includes/dependecies
 
+### Installation
+#### Prerequisites
+Make sure to install [.NET Runtime](https://dotnet.microsoft.com/en-us/download) (minimum version 6.0)
+
+#### Setup
+1. download the latest zip file matching your operation system from [Releases](https://github.com/eisbaer66/spm/releases)
+2. extract the zip into a directory
+3. (optional, but recommended) add the directory to your PATH
+
+#### Setup (alternative)
+If you are on Windows or Linux you can use the install-spm.ps1 script to install.  
+This needs both [Powershell 7](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell) and [.NET Runtime](https://dotnet.microsoft.com/en-us/download) installed.  
+1. download the latest script from [Releases](https://github.com/eisbaer66/spm/releases)
+2. move it into the directory where you want spm installed.
+3. execute the install-spm.ps1 script
+(this will download and extract spm into the current directory and adds it to your PATH)
+
+
 ### Global options
 
 These options can be used with any command
@@ -86,7 +104,7 @@ installs include-file from a zip on github identified by a git-tag.
 Usage: `spm install github-tag-zip <owner> <repository> <versionRange> <assetName> <fileInZip> [options]`  
 
 Example: `spm install github-tag-zip nosoop SM-TFCustAttr 8.* package.zip scripting/include/tf_custom_attributes.inc`  
-installs the zip-file package.zip and extracts the file scripting/include/tf_custom_attributes.inc from the latest 8.* version of https://github.com/nosoop/SM-TFCustAttr/tags
+downloads the zip-file package.zip and extracts the file scripting/include/tf_custom_attributes.inc from the latest 8.* version of https://github.com/nosoop/SM-TFCustAttr/tags
 
 |Argument         |Description
 |-----------------|------------------------------------
@@ -100,6 +118,24 @@ installs the zip-file package.zip and extracts the file scripting/include/tf_cus
 |------------------------------------|----------|-------------------------------------------------|------------------------------------
 |`--download-path <download-path>`   |`-d`      |`/include/<assetName>`                           |path where the include-file will be stored after download and extraction
 |`--version-reg-ex <version-reg-ex>` |`-r`      |`(\d+(?:\.\d+)?(?:\.\d+)?(?:\.\d+)?)[-+]?(\S*)?` |Regular-Expression used to parse the version from the git-tag
+
+#### `install static-url` command
+aliases: `i su`
+
+installs include-file from a static url. (Does not support versioning/updating.)
+
+Usage: `spm install static-url <url> [options]`  
+
+Example: `spm install static-url https://raw.githubusercontent.com/JoinedSenses/SourceMod-IncludeLibrary/master/include/morecolors.inc`  
+installs morecolors.inc from https://raw.githubusercontent.com/JoinedSenses/SourceMod-IncludeLibrary/master/include/morecolors.inc
+
+|Argument |Description
+|---------|------------------------------------
+|`<url>`  |the url of the include-file
+
+|Options                             |Shorthand |Default                 |Description
+|------------------------------------|----------|------------------------|------------------------------------
+|`--download-path <download-path>`   |`-d`      |`/include/<fileName>`  |path where the include-file will be stored after download and extraction
 
 #### `restore` command
 aliases: `r`

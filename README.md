@@ -5,6 +5,8 @@
 
 This CLI tool is used to install, restore, update and remove includes/dependecies
 
+<hr>
+
 ### Installation
 #### Prerequisites
 Make sure to install [.NET Runtime](https://dotnet.microsoft.com/en-us/download) (minimum version 6.0)
@@ -22,40 +24,8 @@ This needs both [Powershell 7](https://docs.microsoft.com/en-us/powershell/scrip
 3. execute the install-spm.ps1 script
 (this will download and extract spm into the current directory and adds it to your PATH)
 
+<hr>
 
-### Global options
-
-These options can be used with any command
-
-|Option                                    |Shorthand  |Type    |Default     |Description
-|------------------------------------------|-----------|--------|------------|------------------------------------
-|`--working-directory <working-directory>` |`-w`       |string  |.           |directory containing the spm.json
-|`--dry-run`                               |`-d`       |bool    |            |executes a dry-run without actually installing/restoring/updating/removing
-|`--github-token <github-token>`           |`-t`       |string  |            |GitHub token used to authenticate API calls
-|                                          |`-v`       |bool    |            |logs: shows warnings
-|                                          |`-vv`      |bool    |            |logs: shows information
-|                                          |`-vvv`     |bool    |            |logs: shows debug
-|                                          |`-vvvv`    |bool    |            |logs: shows verbose
-|`--version`                               |           |bool    |            |Show version information
-|`--help`                                  |`-?`, `-h` |bool    |            |Show help and usage information
-
-#### working directory
-
-spm will look for spm.json in the current working directory. If spm.json is located in an other directory, use `--working-directory <working-directory>` to specify this directory.
-
-#### dry run
-
-spm will not change/create/delete any files, if `--dry-run` is specified.  
-Can be used to test to see what a certain command would do, if  executed without `--dry-run`.
-
-#### GitHub token
-
-will be used to authenticate API calls, increasing the rate limit. Unauthorized calles are limited by GitHub to 60 requests per hour.  
-If [git-credential-manager](https://github.com/GitCredentialManager/git-credential-manager/) is installed, the token will be saved there after the first successful API call. So the token does not have to be provided for further spm executions.
-
-#### Logging levels
-
-By default only errors and the result of the executed command will be output. To output additional logging messages use the `-v` flags. Specifying more v's will increase the level at which log messages will be output (`-vvvv` being the most verbose).
 
 ### `list` command
 aliases: `ls`, `l`
@@ -170,6 +140,43 @@ aliases: `sl`
 displays copyright/license information.
 
 Usage: `spm show-license`
+
+
+### Global options
+
+These options can be used with any command
+
+|Option                                    |Shorthand  |Type    |Default     |Description
+|------------------------------------------|-----------|--------|------------|------------------------------------
+|`--working-directory <working-directory>` |`-w`       |string  |.           |directory containing the spm.json
+|`--dry-run`                               |`-d`       |bool    |            |executes a dry-run without actually installing/restoring/updating/removing
+|`--github-token <github-token>`           |`-t`       |string  |            |GitHub token used to authenticate API calls
+|                                          |`-v`       |bool    |            |logs: shows warnings
+|                                          |`-vv`      |bool    |            |logs: shows information
+|                                          |`-vvv`     |bool    |            |logs: shows debug
+|                                          |`-vvvv`    |bool    |            |logs: shows verbose
+|`--version`                               |           |bool    |            |Show version information
+|`--help`                                  |`-?`, `-h` |bool    |            |Show help and usage information
+
+#### working directory
+
+spm will look for spm.json in the current working directory. If spm.json is located in an other directory, use `--working-directory <working-directory>` to specify this directory.
+
+#### dry run
+
+spm will not change/create/delete any files, if `--dry-run` is specified.  
+Can be used to test to see what a certain command would do, if  executed without `--dry-run`.
+
+#### GitHub token
+
+will be used to authenticate API calls, increasing the rate limit. Unauthorized calles are limited by GitHub to 60 requests per hour.  
+If [git-credential-manager](https://github.com/GitCredentialManager/git-credential-manager/) is installed, the token will be saved there after the first successful API call. So the token does not have to be provided for further spm executions.
+
+#### Logging levels
+
+By default only errors and the result of the executed command will be output. To output additional logging messages use the `-v` flags. Specifying more v's will increase the level at which log messages will be output (`-vvvv` being the most verbose).
+
+<hr>
 
 
 ### spm.lock.json

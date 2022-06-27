@@ -214,6 +214,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run:
-        gh release edit ${{ needs.build-test.outputs.gh-release-id }} --draft=false
+        gh release edit github.ref_name --draft=false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

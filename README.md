@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/eisbaer66/spm/branch/codecov/graph/badge.svg?token=SNPQSQ3YSG)](https://codecov.io/gh/eisbaer66/spm)
 [![c#](https://img.shields.io/badge/language-C%23-%23178600)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![image](https://raw.githubusercontent.com/ZacharyPatten/ZacharyPatten/main/Resources/github-repo-checklist/opens-with-visual-studio-badge.svg)](https://visualstudio.microsoft.com/downloads/)
-[![dotnet6](https://img.shields.io/badge/dynamic/xml?color=%23512bd4&label=target&query=%2F%2FTargetFramework%5B1%5D&url=https%3A%2F%2Fraw.githubusercontent.com%2Feisbaer66%2Fspm%2Fcodecov%2FSourcePawnManager.Core%2FSourcePawnManager.Core.csproj)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![dotnet6](https://img.shields.io/badge/dynamic/xml?color=%23512bd4&label=target&query=%2F%2FTargetFramework%5B1%5D&url=https%3A%2F%2Fraw.githubusercontent.com%2Feisbaer66%2Fspm%2Fmain%2FSourcePawnManager.Core%2FSourcePawnManager.Core.csproj)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![license](https://img.shields.io/badge/license-AGPL--3.0-blue)](https://github.com/eisbaer66/spm/blob/main/COPYING)
 
 # SourcePawnManager CLI

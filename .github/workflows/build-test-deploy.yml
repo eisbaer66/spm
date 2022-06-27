@@ -113,7 +113,7 @@ jobs:
       run: docker cp spm-tests:/app/SourcePawnManager.Core.Tests/coverage.opencover.xml coverage.opencover.xml
       if: matrix.rid == 'linux-x64'
     - name: Test dotnet - upload
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         fail_ci_if_error: true
         files: ./coverage.opencover.xml

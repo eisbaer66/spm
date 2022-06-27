@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePawnManager.Core.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{28BA7FA8-9014-4327-A03C-306B672E751F}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		CONTRIBUTING.md = CONTRIBUTING.md
 		COPYING = COPYING
 		Dockerfile = Dockerfile
 		install-spm-template.ps1 = install-spm-template.ps1
@@ -20,6 +24,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{4DCF9E95-A74E-4961-AD9F-978F63220027}"
+	ProjectSection(SolutionItems) = preProject
+		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Action", "Action", "{4DA6385E-96EE-4347-B78F-4500C95118CE}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,7 +41,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{1F
 		.github\workflows\maint.yml = .github\workflows\maint.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourcePawnManager.Core.CliTests", "SourcePawnManager.Core.CliTests\SourcePawnManager.Core.CliTests.csproj", "{CB357EB0-31C8-4196-B7BF-DFA75C64A98A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePawnManager.Core.CliTests", "SourcePawnManager.Core.CliTests\SourcePawnManager.Core.CliTests.csproj", "{CB357EB0-31C8-4196-B7BF-DFA75C64A98A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEMPLATE", "{7533578A-0376-4742-AE10-FE92184B0147}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
+		.github\ISSUE_TEMPLATE\config.yml = .github\ISSUE_TEMPLATE\config.yml
+		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +79,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4DA6385E-96EE-4347-B78F-4500C95118CE} = {4DCF9E95-A74E-4961-AD9F-978F63220027}
 		{1F6D7A5B-BF75-4D6B-81ED-06C124DBD8E3} = {4DCF9E95-A74E-4961-AD9F-978F63220027}
+		{7533578A-0376-4742-AE10-FE92184B0147} = {4DCF9E95-A74E-4961-AD9F-978F63220027}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8F167DA1-63A9-477D-9BA6-E9FA37F30C06}

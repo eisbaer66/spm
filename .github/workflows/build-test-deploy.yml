@@ -103,8 +103,28 @@ jobs:
           rid=${{ matrix.rid }}
 
     #Test dotnet
-    - name: Test dotnet
-      run: docker run -t --rm --network host --entrypoint dotnet -e SPM_GitHub__Token=${{ secrets.GITHUB_TOKEN }} icebear66/spm-dev:${{ matrix.rid }} test
+    - name: Test dotnet - setup
+      run: docker run --name spm-tests -td --network host --entrypoint bash -e SPM_GitHub__Token=${{ secrets.GITHUB_TOKEN }} icebear66/spm-dev:${{ matrix.rid }}
+      if: matrix.rid == 'linux-x64'
+    - name: Test dotnet - run
+      run: docker exec spm-tests dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      if: matrix.rid == 'linux-x64'
+    - name: Test dotnet - extract
+      run: docker cp spm-tests:/app/SourcePawnManager.Core.Tests/coverage.opencover.xml coverage.opencover.xml
+      if: matrix.rid == 'linux-x64'
+    - name: Test dotnet - upload
+      uses: codecov/codecov-action@v2
+      with:
+        fail_ci_if_error: true
+        files: ./coverage.opencover.xml
+        flags: unittests
+        name: codecov-spm
+      if: matrix.rid == 'linux-x64'
+    - name: Test dotnet - cleanup - container
+      run: docker container rm -f spm-tests
+      if: matrix.rid == 'linux-x64'
+    - name: Test dotnet - cleanup - filesystem
+      run: rm coverage.opencover.xml
       if: matrix.rid == 'linux-x64'
     #Test action
     - name: Test spm-gh-action image

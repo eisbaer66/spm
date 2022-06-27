@@ -1,22 +1,26 @@
-﻿
-# SourcePawnManager (spm)
+﻿[![Discord](https://img.shields.io/discord/974741311506772048?color=7389D8&label=discord&logo=discord&logoColor=ffffff)](https://discord.gg/GdN5nWXCRD)
+[![build-test-deploy](https://github.com/eisbaer66/spm/actions/workflows/build-test-deploy.yml/badge.svg)](https://github.com/eisbaer66/spm/actions/workflows/build-test-deploy.yml)
+[![codecov](https://codecov.io/gh/eisbaer66/spm/branch/codecov/graph/badge.svg?token=SNPQSQ3YSG)](https://codecov.io/gh/eisbaer66/spm)
+[![c#](https://img.shields.io/badge/language-C%23-%23178600)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![image](https://raw.githubusercontent.com/ZacharyPatten/ZacharyPatten/main/Resources/github-repo-checklist/opens-with-visual-studio-badge.svg)](https://visualstudio.microsoft.com/downloads/)
+[![dotnet6](https://img.shields.io/badge/dynamic/xml?color=%23512bd4&label=target&query=%2F%2FTargetFramework%5B1%5D&url=https%3A%2F%2Fraw.githubusercontent.com%2Feisbaer66%2Fspm%2Fcodecov%2FSourcePawnManager.Core%2FSourcePawnManager.Core.csproj)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![license](https://img.shields.io/badge/license-AGPL--3.0-blue)](https://github.com/eisbaer66/spm/blob/main/COPYING)
 
-## SourcePawnManager CLI
+# SourcePawnManager CLI
 
 This CLI tool is used to install, restore, update and remove includes/dependecies
 
-<hr>
 
-### Installation
-#### Prerequisites
+## Installation
+### Prerequisites
 Make sure to install [.NET Runtime](https://dotnet.microsoft.com/en-us/download) (minimum version 6.0)
 
-#### Setup
+### Setup
 1. download the latest zip file matching your operation system from [Releases](https://github.com/eisbaer66/spm/releases)
 2. extract the zip into a directory
 3. (optional, but recommended) add the directory to your PATH
 
-#### Setup (alternative)
+### Setup (alternative)
 If you are on Windows or Linux you can use the install-spm.ps1 script to install.  
 This needs both [Powershell 7](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell) and [.NET Runtime](https://dotnet.microsoft.com/en-us/download) installed.  
 1. download the latest script from [Releases](https://github.com/eisbaer66/spm/releases)
@@ -24,9 +28,8 @@ This needs both [Powershell 7](https://docs.microsoft.com/en-us/powershell/scrip
 3. execute the install-spm.ps1 script
 (this will download and extract spm into the current directory and adds it to your PATH)
 
-<hr>
 
-
+## Commands
 ### `list` command
 aliases: `ls`, `l`
 
@@ -142,7 +145,7 @@ displays copyright/license information.
 Usage: `spm show-license`
 
 
-### Global options
+## Global options
 
 These options can be used with any command
 
@@ -158,28 +161,26 @@ These options can be used with any command
 |`--version`                               |           |bool    |            |Show version information
 |`--help`                                  |`-?`, `-h` |bool    |            |Show help and usage information
 
-#### working directory
+### working directory
 
 spm will look for spm.json in the current working directory. If spm.json is located in an other directory, use `--working-directory <working-directory>` to specify this directory.
 
-#### dry run
+### dry run
 
 spm will not change/create/delete any files, if `--dry-run` is specified.  
 Can be used to test to see what a certain command would do, if  executed without `--dry-run`.
 
-#### GitHub token
+### GitHub token
 
 will be used to authenticate API calls, increasing the rate limit. Unauthorized calles are limited by GitHub to 60 requests per hour.  
 If [git-credential-manager](https://github.com/GitCredentialManager/git-credential-manager/) is installed, the token will be saved there after the first successful API call. So the token does not have to be provided for further spm executions.
 
-#### Logging levels
+### Logging levels
 
 By default only errors and the result of the executed command will be output. To output additional logging messages use the `-v` flags. Specifying more v's will increase the level at which log messages will be output (`-vvvv` being the most verbose).
 
-<hr>
 
-
-### spm.lock.json
+## spm.lock.json
 `spm install` and `spm update` will lock the installed/updated version of the include-file, by writing them into a file called spm.lock.json.  
 This file is used to prevent unintended updates of the installed include-file version.  
 When executing `spm restore` include-files will be installed with the locked version, to make sure all contributers use the same version.  
@@ -187,7 +188,7 @@ When executing `spm restore` include-files will be installed with the locked ver
 
 Both spm.json and spm.lock.json should be added to your versioncontrol, to make sure other contributers will work with the same versions of include-files.
 
-### VersionRanges
+## VersionRanges
 When installing a include you can specify a [range](https://docs.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges) of allowed versions.
 
 |Notation  |Applied rule  |Description
@@ -203,11 +204,11 @@ When installing a include you can specify a [range](https://docs.microsoft.com/e
 |(1.0)     |invalid       |invalid
 
 
-## GitHub Docker Action
+# GitHub Docker Action
 
 This action restores include files defined in spm.json.
 
-### Example usage
+## Example usage
 To use the GitHub Action, you'll need to add it as a step in your [Workflow file](https://help.github.com/en/actions/automating-your-workflow-with-github-actions).   
 `restore` is the default action for the GitHub Action, so no further configuration is needed:
 ```yaml
@@ -222,7 +223,7 @@ jobs:
 ```
 
 
-### Input Parameters
+## Input Parameters
 You can set any or all of the following input parameters:
 
 |Name                |Type    |Required? |Default                     |Description
@@ -248,7 +249,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### Output Variables
+## Output Variables
 spm exposes some output variables, which you can use in later steps of your workflow. To access the output variables, you'll need to set an `id` for the spm step.
 
 ```yaml
@@ -273,7 +274,7 @@ steps:
 |`dependency-count` |int     |The count of restored/updated dependencies.
 
 
-## License
+# License
 Copyright (C) 2022 icebear <icebear@icebear.rocks>
 
 SourcePawnManager (spm) is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.

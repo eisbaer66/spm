@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discussions
+    url: https://github.com/eisbaer66/spm/discussions/
+    about: Please ask and answer questions here.
+  - name: Discord
+    url: https://discord.gg/GdN5nWXCRD
+    about: chats around spm

@@ -160,6 +160,12 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
     - run: sed -i -e 's/$spmVersion = \"v0.1\"/$spmVersion = \"${{ github.ref_name }}\"/g' install-spm.ps1
       if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
+    - name: Changelog
+      id: changelog
+      uses: mindsers/changelog-reader-action@v2.0.0     # v2.1.0 does not read description (see https://github.com/mindsers/changelog-reader-action/issues/63)
+      if: startsWith(github.ref, 'refs/tags/v')
+      with:
+        version: ${{ github.ref_name }}
     - name: Release
       id: gh-release
       uses: softprops/action-gh-release@v1
@@ -167,6 +173,7 @@ jobs:
       with:
         draft: true
         prerelease: true
+        body: ${{ steps.changelog.outputs.changes }}
         generate_release_notes: true
         files: |
           ${{ matrix.rid }}.zip

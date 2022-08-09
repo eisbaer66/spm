@@ -31,7 +31,7 @@
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-    <PackageReference Include="NuGet.Versioning" Version="6.2.1" />
+    <PackageReference Include="NuGet.Versioning" Version="6.3.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.5" />
   </ItemGroup>
 

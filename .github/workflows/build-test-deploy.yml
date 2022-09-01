@@ -162,7 +162,7 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
     - name: Changelog
       id: changelog
-      uses: mindsers/changelog-reader-action@v2.0.0     # v2.1.0 does not read description (see https://github.com/mindsers/changelog-reader-action/issues/63)
+      uses: mindsers/changelog-reader-action@v2.2.0     # v2.1.0 does not read description (see https://github.com/mindsers/changelog-reader-action/issues/63)
       if: startsWith(github.ref, 'refs/tags/v')
       with:
         version: ${{ github.ref_name }}

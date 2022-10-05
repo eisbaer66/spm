@@ -71,7 +71,7 @@ jobs:
       gh-release-id: ${{ steps.gh-release.outputs.id }}
     #  success:  ${{ steps.set-output.outputs.linux-x64-success && steps.set-output.outputs.win-x64-success && steps.set-output.outputs.osx-x64-success }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
 
     # If triggered manually, print the reason why
     - name: 'Print manual run reason'
@@ -219,7 +219,7 @@ jobs:
     needs: build-test
     if: startsWith(github.ref, 'refs/tags/v') # && needs.build-test.outputs.success
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
     - run:
         gh release edit ${{ github.ref_name }} --draft=false
       env:

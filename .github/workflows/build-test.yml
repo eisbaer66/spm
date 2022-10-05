@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3.1.0
 
     # If triggered manually, print the reason why
     - name: 'Print manual run reason'
@@ -57,7 +57,7 @@ jobs:
   #  runs-on: windows-2019 
 
   #  steps:
-  #  - uses: actions/checkout@v2
+  #  - uses: actions/checkout@v3.1.0
 
   #  - name: Setup .NET
   #    uses: actions/setup-dotnet@v2
@@ -79,7 +79,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - uses: eisbaer66/spm@main
       - uses: eisbaer66/spm@main
         with:
@@ -108,7 +108,7 @@ jobs:
   #  # Steps represent a sequence of tasks that will be executed as part of the job
   #  steps:
   #    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-  #    - uses: actions/checkout@v3
+  #    - uses: actions/checkout@v3.1.0
   #    #- run: |
   #    #    apt-get update &&
   #    #    apt-get -y install curl

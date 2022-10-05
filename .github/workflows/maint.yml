@@ -37,7 +37,7 @@ jobs:
     outputs:
       needs-updating: ${{ steps.baseupdatecheck.outputs.out-of-date }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
     - name: Docker Image Update Checker
       id: baseupdatecheck
       uses: twiddler/is-my-docker-parent-image-out-of-date@v1
@@ -47,7 +47,7 @@ jobs:
     - run: echo ${{ format('out-of-date -> {0}', steps.baseupdatecheck.outputs.out-of-date) }}
         
     #Bump version and push tag
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
       if: steps.baseupdatecheck.outputs.out-of-date == 'true'
       with:
         token: ${{ secrets.GH_PAT }}    #needed to trigger new workflow when pushing the new tag
@@ -73,7 +73,7 @@ jobs:
 
     # Checkout the repo into the workspace within the VM
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
 
     # If triggered manually, print the reason why
     - name: 'Print manual run reason'

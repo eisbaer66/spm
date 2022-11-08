@@ -12,7 +12,7 @@ RUN cp licensing.txt out/licensing.txt
 
 
 # Relayer the .NET SDK, anew with the build output
-FROM mcr.microsoft.com/dotnet/runtime:6.0 as spm
+FROM mcr.microsoft.com/dotnet/runtime:7.0.0 as spm
 COPY --from=build-env /app/out /usr/share/spm
 RUN ln -s /usr/share/spm/spm /usr/bin/spm
 ENTRYPOINT [ "spm" ]

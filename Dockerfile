@@ -1,5 +1,5 @@
 # Set the base image as the .NET 6.0 SDK (this includes the runtime)
-FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
+FROM mcr.microsoft.com/dotnet/sdk:7.0.100 as build-env
 
 ARG rid=linux-x64
 

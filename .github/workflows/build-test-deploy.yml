@@ -83,7 +83,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
     - name: Build build-env
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v4
       with:
         context: .
         load: true
@@ -92,7 +92,7 @@ jobs:
         build-args: |
           rid=${{ matrix.rid }}
     - name: Build spm-gh-action
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v4
       if: matrix.rid == 'linux-x64'
       with:
         context: .
@@ -196,7 +196,7 @@ jobs:
         tags: ${{ env.TAGS }}
         flavor: latest=false
     - name: Push spm to docker hub
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v4
       if: startsWith(github.ref, 'refs/tags/v') && matrix.rid == 'linux-x64'
       with:
         context: .
